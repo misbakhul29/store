@@ -12,4 +12,14 @@ export default withBundleAnalyzer({
   experimental: {
     optimizePackageImports: ['@mantine/core', '@mantine/hooks'],
   },
+  images: {
+    remotePatterns: [
+      {
+        hostname: 'fakestoreapi.com',
+      },
+      {
+        hostname: 'api.escuelajs.co',
+      },
+    ],
+  },
 });

@@ -1,11 +1,9 @@
-import { ColorSchemeToggle } from '../components/ColorSchemeToggle/ColorSchemeToggle';
-import { Welcome } from '../components/Welcome/Welcome';
+'use client'
+import { useEffect } from "react";
 
-export default function HomePage() {
-  return (
-    <>
-      <Welcome />
-      <ColorSchemeToggle />
-    </>
-  );
+export default function Home() {
+  useEffect(() => {
+    window.location.href = "/dashboard";
+  }, []);
+  return null
 }
