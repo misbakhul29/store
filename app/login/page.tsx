@@ -4,7 +4,6 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { TextInput, PasswordInput, Button, Paper, Title, Container, Text, Anchor } from '@mantine/core';
 import { useForm } from '@mantine/form';
-import { signIn } from 'next-auth/react';
 
 export default function LoginPage() {
     const router = useRouter();
@@ -21,37 +20,8 @@ export default function LoginPage() {
         },
     });
 
-    const handleSubmit = async (values: { email: string; password: string }) => {
+    const handleSubmit = () => {
         setIsLoading(true);
-        try {
-            const loginResponse = await fetch('https://fakestoreapi.com/auth/login', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    email: values.email,
-                    password: values.password,
-                }),
-            });
-
-            const loginData = await loginResponse.json();
-
-            if (loginData.status === 'success') {
-                const response = await signIn('credentials', {
-                    email: values.email,
-                    password: values.password,
-                    redirect: false,
-                });
-
-                if (response?.ok) {
-
-                    router.push('/dashboard');
-                }
-            }
-        } catch (error) {
-            console.error('Login failed:', error);
-        } finally {
-            setIsLoading(false);
-        }
     };
 
     return (
